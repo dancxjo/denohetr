@@ -48,7 +48,7 @@ const vowels = {
     // **Dagesh, Rafe, Meteg**
     '\u05BC': '',  // Dagesh (handled in consonant mappings)
     '\u05BF': '',  // Rafe (handled in consonant mappings)
-    '\u05BD': '\u0318', // Meteg (combining left tack below)
+    '\u05BD': '', // Meteg (probably should be ommitted)
 };
 
 const consonants = {
@@ -145,7 +145,7 @@ class CompositeGrapheme {
         let result = (this.onset + this.nucleus + this.tail)
             .replace('wō', 'ō')
             .replace('ww', 'ū')
-            .replaceAll('ij', 'ī')
+            .replaceAll('ij', 'ī')  // This isn't being observed
             .replaceAll('íj', 'ī́')
             .replaceAll('jəhwāh', 'ʾăðōnāj')
             .replaceAll('jəhwih', 'ʾĕlōhīm')
@@ -176,7 +176,8 @@ function elideSchwa(transliteration: string): string {
 }
 
 export function transliterate(text: string): string {
-    const normalized = text.normalize('NFC').normalize('NFD').normalize('NFC');
+    const cantillation = /[\u0591-\u05AF]/g;
+    const normalized = text.normalize('NFC').normalize('NFD').normalize('NFC').replace(cantillation, '');
     const consonantBlocks = [...normalized.matchAll(/(([א-ת])([֚-ׇֽֿׁׂׅׄ]*)([^\u05D0-\u05eA]*))/g)]
         .map(match => new CompositeGrapheme(match[2], match[3], match[4]));
 
