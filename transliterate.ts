@@ -165,14 +165,14 @@ function elideSchwa(transliteration: string): string {
     const pattern = `((${V})(${C}?))?(${C})ə(${C})`;
     return transliteration.replace(new RegExp(pattern, 'g'), (match, lastRime = '', V = '', C0 = '', C1: string, C2: string) => {
         if (V && !C0) {
-            return `${V}${C1}${C2}`;
+            return `${V}${C1}'${C2}`;
         }
         const onset = C1 + C2;
         if (V && onset && permissibleOnsets.has(onset)) {
-            return `${C1}${C2}`;
+            return `${C1}'${C2}`;
         }
         return match;
-    }).replace(new RegExp(`(${C})ə(\\P{L})`, 'gu'), '$1$2');
+    }).replace(new RegExp(`(${C})ə(\\P{L})`, 'gu'), '$1\'$2');
 }
 
 export function transliterate(text: string): string {
