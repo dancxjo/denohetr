@@ -144,12 +144,7 @@ class CompositeGrapheme {
     toString(): string {
         let result = (this.onset + this.nucleus + this.tail)
             .replace('wō', 'ō')
-            .replace('ww', 'ū')
-            .replaceAll('ij', 'ī')  // This isn't being observed
-            .replaceAll('íj', 'ī́')
-            .replaceAll('jəhwāh', 'ʾăðōnāj')
-            .replaceAll('jəhwih', 'ʾĕlōhīm')
-            .replace(/jw\b/g, 'w');
+            .replace('ww', 'ū');
         for (const [grapheme, replacement] of Object.entries(punctuation)) {
             result = result.replaceAll(grapheme, replacement);
         }
@@ -185,6 +180,13 @@ export function transliterate(text: string): string {
     for (const block of consonantBlocks) {
         result += block.toString();
     }
+
+    result = result
+        .replaceAll('íj', 'ī́')
+        .replaceAll('ij', 'ī')
+        .replaceAll('jəhwāh', 'ʾăðōnāj')
+        .replaceAll('jəhwih', 'ʾĕlōhīm')
+        .replace(/jw\b/g, 'w');
 
     return elideSchwa(result.normalize('NFC'));
 }
