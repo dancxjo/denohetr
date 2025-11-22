@@ -43,7 +43,7 @@ const vowels = {
     '\u05B9': 'ō', // Holam
     '\u05BA': 'ō', // Holam Haser
     '\u05BB': 'u', // Qubuts
-    '\u05C7': 'å', // Qamats Qatan
+    '\u05C7': 'o', // Qamats Qatan
 
     // **Dagesh, Rafe, Meteg**
     '\u05BC': '',  // Dagesh (handled in consonant mappings)
@@ -172,7 +172,7 @@ function elideSchwa(transliteration: string): string {
 
 export function transliterate(text: string): string {
     const cantillation = /[\u0591-\u05AF]/g;
-    const normalized = text.normalize('NFC').normalize('NFD').normalize('NFC').replace(cantillation, '');
+    const normalized = text.normalize('NFC').replace(cantillation, '');
     const consonantBlocks = [...normalized.matchAll(/(([א-ת])([֚-ׇֽֿׁׂׅׄ]*)([^\u05D0-\u05eA]*))/g)]
         .map(match => new CompositeGrapheme(match[2], match[3], match[4]));
 
