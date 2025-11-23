@@ -20,7 +20,7 @@ Below is the pronunciation key.
 | ו      | **w**           | w         | Always /w/, never /v/. Mater lectionis resolved in post-processing.                     |
 | ז      | **z**           | z         | —                                                                                       |
 | ח      | **χ**           | χ         | Voiceless uvular fricative (stronger than German *ch*).                                 |
-| ט      | **ʈ**           | ʈˤ        | Emphatic /ṭ/ (retroflex or pharyngealized).                                             |
+| ט      | **ʈ**           | tˤ        | Emphatic /ṭ/ (pharyngealized).                                             |
 | י      | **j**           | j         | Consonantal *yod*. May be absorbed into long vowels (e.g., **ij → ī**).                 |
 | כ / כּ | **x / k**       | x, k      | Soft = velar fricative; Dagesh = k.                                                     |
 | ל      | **l**           | l         | —                                                                                       |
